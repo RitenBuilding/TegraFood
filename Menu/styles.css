@@ -41,6 +41,10 @@ body {
   padding: 10px;
   text-align: center;
   border: 1px solid white;
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
 }
 
 /* estilizar links do menu */

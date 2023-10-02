@@ -19,3 +19,16 @@ function buttonClick() {
     });
   }
   
+  function menuClick(position) {
+    const element = document.querySelectorAll("table.menu-list tbody tr");
+  
+    element[position].firstElementChild.style.backgroundColor = "#dc9000";
+  
+    element.forEach((el) => {
+      if (el.firstElementChild === element[position].firstElementChild) {
+        return;
+      }
+      el.firstElementChild.style.backgroundColor = "#6a0000";
+    });
+  }
+  
