@@ -201,3 +201,40 @@ body {
   font-size: 20px;
   margin-top: -15px;
 }
+
+.modal {
+  position: fixed;
+  top: 90%;
+  left: 35%;
+  display: none;
+  border: 1px solid #223263;
+  background-color: #223263;
+  width: 570px;
+}
+
+.modal-content ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  padding: 10px;
+  list-style-type: none;
+}
+
+.modal p {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  display: inline;
+  margin-left: 10px;
+}
+
+.cancel-button {
+  border: none;
+  color: #e5a11f;
+  font-weight: 500;
+  font-size: 16px;
+  background-color: transparent;
+  cursor: pointer;
+  margin-right: 10px;
+}

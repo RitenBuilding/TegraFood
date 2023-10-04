@@ -115,10 +115,43 @@ function clearProductList() {
   while (productsContainer.firstChild) {
     productsContainer.removeChild(productsContainer.firstChild);
   }
+
+  const modal = document.querySelector(".modal");
+  if (modal) {
+    modal.removeChild(modal.firstChild);
+  }
 }
 
 document.getElementById("sortAZ").addEventListener("click", function (event) {
   event.preventDefault();
   clearProductList();
   fillProductBox("asc");
+
+  const modalContainer = document.querySelector(".modal");
+  modalContainer.style.display = "block";
+
+  const modalContent = document.createElement("ul");
+  modalContainer.classList.add("modal-content");
+
+  const modalTextContainer = document.createElement("li");
+  const modalText = document.createElement("p");
+  modalText.innerHTML = "Ítens organizados de A à Z";
+  modalTextContainer.appendChild(modalText);
+
+  const modalButtonContainer = document.createElement("li");
+  const modalCancel = document.createElement("button");
+  modalCancel.classList.add("cancel-button");
+  modalCancel.setAttribute("onclick", "closeModal()");
+  modalCancel.innerHTML = "Cancelar";
+  modalButtonContainer.appendChild(modalCancel);
+
+  modalContent.append(modalTextContainer);
+  modalContent.append(modalButtonContainer);
+
+  modalContainer.append(modalContent);
 });
+
+function closeModal() {
+  const modal = document.querySelector(".modal");
+  modal.style.display = "none";
+}
