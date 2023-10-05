@@ -24,9 +24,13 @@ function menuClick(position) {
 
   element[position].firstElementChild.style.backgroundColor = "#dc9000";
 
-  element.forEach((el) => {
+  element.forEach(async (el) => {
     if (el.firstElementChild === element[position].firstElementChild) {
-      return;
+      const filteredProducts = await filterProducts(
+        el.firstElementChild.firstChild.textContent
+      );
+      clearProductList();
+      return fillProductBox("asc", filteredProducts);
     }
     el.firstElementChild.style.backgroundColor = "#6a0000";
   });
@@ -37,12 +41,14 @@ async function getProducts(orderBy) {
     const response = await fetch("products.json");
     const data = await response.json();
 
-    data.sort((a, b) => {
-      if (orderBy === "asc") {
-        return a.name.localeCompare(b.name);
-      }
-      return 0;
-    });
+    if (orderBy) {
+      data.sort((a, b) => {
+        if (orderBy === "asc") {
+          return a.name.localeCompare(b.name);
+        }
+        return 0;
+      });
+    }
 
     return data;
   } catch (error) {
@@ -51,11 +57,17 @@ async function getProducts(orderBy) {
   }
 }
 
-async function fillProductBox(orderBy) {
+async function fillProductBox(orderBy, filteredProducts) {
   const productsContainer = document.querySelector(".products");
 
   try {
-    const products = await getProducts(orderBy);
+    let products;
+
+    if (!filteredProducts) {
+      products = await getProducts(orderBy);
+    } else {
+      products = filteredProducts;
+    }
 
     products.forEach((product) => {
       const productBox = document.createElement("div");
@@ -112,12 +124,13 @@ fillProductBox();
 
 function clearProductList() {
   const productsContainer = document.querySelector(".products");
+
   while (productsContainer.firstChild) {
     productsContainer.removeChild(productsContainer.firstChild);
   }
 
   const modal = document.querySelector(".modal");
-  if (modal) {
+  if (modal && modal.firstChild) {
     modal.removeChild(modal.firstChild);
   }
 }
@@ -154,4 +167,19 @@ document.getElementById("sortAZ").addEventListener("click", function (event) {
 function closeModal() {
   const modal = document.querySelector(".modal");
   modal.style.display = "none";
+}
+
+async function filterProducts(category) {
+  try {
+    if (category.toLowerCase().trim() === "todos") {
+      return;
+    }
+    const products = await getProducts();
+
+    return products.filter((product) => {
+      return product.category === category.toLowerCase().trim();
+    });
+  } catch (error) {
+    console.log("Erro ao filtrar produtos:", error);
+  }
 }

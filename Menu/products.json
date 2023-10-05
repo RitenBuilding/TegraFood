@@ -4,14 +4,16 @@
     "name": "Pizza de Marguerita",
     "description": "(Muçarela, tomate, manjericão, orégano)",
     "value": 60,
-    "imagePath": "images/pizza.svg"
+    "imagePath": "images/pizza.svg",
+    "category": "pizza"
   },
   {
     "id": 1,
     "name": "Torta de Leite Ninho",
     "description": "(Massa de baunilha, creme de ninho tradicional, morango, chantily)",
     "value": 70,
-    "imagePath": "images/ninho.svg"
+    "imagePath": "images/ninho.svg",
+    "category": "sobremesa"
   },
 
   {
@@ -19,7 +21,8 @@
     "name": "Lanche X-Burguer",
     "description": "(Pão, hamburguer, alface, tomate, queijo cheddar, cebola e picles)",
     "value": 22,
-    "imagePath": "images/lanche.svg"
+    "imagePath": "images/lanche.svg",
+    "category": "todos"
   },
 
   {
@@ -27,7 +30,8 @@
     "name": "Pizza de Strogonofe",
     "description": "(strogonofe, muçarela e orégano)",
     "value": 65,
-    "imagePath": "images/strog.svg"
+    "imagePath": "images/strog.svg",
+    "category": "pizza"
   },
 
   {
@@ -35,7 +39,8 @@
     "name": "Açai com Frutas",
     "description": "(Açai, banana, morango, uva, leite ninho em pó e leite condensado)",
     "value": 18,
-    "imagePath": "images/acaif.svg"
+    "imagePath": "images/acaif.svg",
+    "category": "açaí"
   },
 
   {
@@ -43,7 +48,8 @@
     "name": "Refrigerante Coca-Cola 350ml",
     "description": "Refrigerante Coca-Cola 350ml",
     "value": 6,
-    "imagePath": "images/coca.svg"
+    "imagePath": "images/coca.svg",
+    "category": "bebidas"
   },
 
   {
@@ -51,7 +57,8 @@
     "name": "Taça de sonho de valsa",
     "description": "(chocolate branco e preto, sonho de valsa, morango e leite condensado)",
     "value": 15,
-    "imagePath": "images/valsa.svg"
+    "imagePath": "images/valsa.svg",
+    "category": "sobremesa"
   },
 
   {
@@ -59,7 +66,8 @@
     "name": "Barca de açaí",
     "description": "(Açai, banana, morango, uva, leite ninho em pó e leite condensado)",
     "value": 22,
-    "imagePath": "images/barca.svg"
+    "imagePath": "images/barca.svg",
+    "category": "açaí"
   },
 
   {
@@ -67,7 +75,8 @@
     "name": "Refrigerante Coca-Cola zero 350ml",
     "description": "Refrigerante Coca-Cola zero 350ml",
     "value": 5,
-    "imagePath": "images/cocaz.svg"
+    "imagePath": "images/cocaz.svg",
+    "category": "bebidas"
   },
 
   {
@@ -75,6 +84,7 @@
     "name": "Lanche de Churrasco",
     "description": "(Pão, hamburguer, calabresa, iescar de carne, muçarela, cebola e picles)",
     "value": 30,
-    "imagePath": "images/churrs.svg"
+    "imagePath": "images/churrs.svg",
+    "category": "todos"
   }
 ]
