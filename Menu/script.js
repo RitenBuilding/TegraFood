@@ -100,7 +100,7 @@ async function fillProductBox(orderBy, filteredProducts) {
       productPriceDiv.classList.add("price");
 
       const productPrice = document.createElement("p");
-      productPrice.textContent = `R$ ${product.value.toFixed(2)}`;
+      productPrice.textContent = `R$ ${product.value},00`;
 
       const buyButton = document.createElement("button");
       buyButton.classList.add("orange-button");
