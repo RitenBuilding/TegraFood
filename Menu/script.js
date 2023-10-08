@@ -183,3 +183,42 @@ async function filterProducts(category) {
     console.log("Erro ao filtrar produtos:", error);
   }
 }
+
+document
+  .getElementById("price-filter")
+  .addEventListener("click", async function (event) {
+    event.preventDefault();
+
+    const filterPriceContainer = document.querySelector(".price-filter");
+    filterPriceContainer.style.display = "block";
+
+    const filterPriceTitle = document.createElement("p");
+    filterPriceTitle.classList.add("filter-title");
+    filterPriceTitle.innerHTML = "Filtrar por preço:";
+
+    const filterPriceContent = document.createElement("ul");
+    filterPriceContainer.classList.add("filterPrice-content");
+
+    const filterPriceTextContainer1 = document.createElement("li");
+    const filterPriceText1 = document.createElement("button");
+    filterPriceText1.innerHTML = "R$5 à R$25";
+    filterPriceTextContainer1.appendChild(filterPriceText1);
+
+    const filterPriceTextContainer2 = document.createElement("li");
+    const filterPriceText2 = document.createElement("button");
+    filterPriceText2.innerHTML = "R$26 à R$45";
+    filterPriceTextContainer2.appendChild(filterPriceText2);
+
+    const filterPriceTextContainer3 = document.createElement("li");
+    const filterPriceText3 = document.createElement("button");
+    filterPriceText3.innerHTML = "R$46 ou mais";
+    filterPriceTextContainer3.appendChild(filterPriceText3);
+
+    filterPriceContent.append(
+      filterPriceTextContainer1,
+      filterPriceTextContainer2,
+      filterPriceTextContainer3
+    );
+
+    filterPriceContainer.append(filterPriceTitle, filterPriceContent);
+  });
