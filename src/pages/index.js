@@ -42,13 +42,7 @@ export default function Login() {
         </styles.LineContainer>
 
         <styles.GoogleButton>
-          <Image
-            src={googleImage}
-            style={{
-              display: "flex",
-            }}
-            alt="Google"
-          />
+          <Image src={googleImage} alt="Google" />
           <styles.GoogleButtonText>Entrar com o Google</styles.GoogleButtonText>
         </styles.GoogleButton>
 
