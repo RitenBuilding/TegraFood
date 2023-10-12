@@ -7,18 +7,21 @@ import googleImage from "../assets/images/Google.jpg";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router.js";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const router = useRouter();
+
   const handleLogin = () => {
     const validEmail = "admin@tegrafood.com";
     const validPassword = "admin123";
 
     if (email === validEmail && password === validPassword) {
-      console.log("Login bem-sucedido");
+      router.push("/menu");
       setErrorMessage("");
     } else {
       setErrorMessage("Credenciais inválidas. Por favor, tente novamente.");
