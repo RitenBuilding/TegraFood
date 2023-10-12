@@ -166,3 +166,11 @@ export const RegisterLink = styled.a`
   text-align: center;
   color: #40bfff;
 `;
+
+export const ErrorText = styled.p`
+  font-family: Poppins;
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 10px;
+  text-align: center;
+`;
