@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -154,7 +155,7 @@ export const RegisterContainer = styled.div`
   margin-top: 15px;
 `;
 
-export const RegisterLink = styled.a`
+export const RegisterLink = styled(Link)`
   margin-left: 5px;
   cursor: pointer;
 

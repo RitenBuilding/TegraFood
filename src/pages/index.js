@@ -96,7 +96,7 @@ export default function Login() {
 
         <styles.RegisterContainer>
           <styles.Subtitle>Não tem uma conta?</styles.Subtitle>
-          <styles.RegisterLink>Cadastre</styles.RegisterLink>
+          <styles.RegisterLink href="/signup">Cadastre</styles.RegisterLink>
         </styles.RegisterContainer>
       </styles.Content>
     </styles.Container>
