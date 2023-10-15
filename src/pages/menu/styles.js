@@ -69,10 +69,18 @@ export const Avatar = styled(Image)`
   margin: 18px 10px;
 `;
 
+export const HorizontalContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 1000px;
+  justify-content: space-between;
+  align-self: center;
+`;
+
 export const HorizontalListMenu = styled.div`
   display: flex;
   flex-direction: row;
-  margin-left: 40px;
   margin-bottom: 20px;
 
   :hover {
@@ -96,6 +104,18 @@ export const HorizontalMenuText = styled.p`
   }
 `;
 
+export const HorizontalIconContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+  margin-top: 50px;
+  margin-right: 40px;
+`;
+
+export const HorizontalMenuIcon = styled(Image)`
+  margin-left: 50px;
+  cursor: pointer;
+`;
+
 export const CenterContainer = styled.div`
   display: flex;
   align-items: center;
@@ -103,6 +123,7 @@ export const CenterContainer = styled.div`
   width: 100%;
   padding: 15px;
   overflow-y: auto;
+  background-color: #fff;
 `;
 
 export const ProductsContainer = styled.div`
