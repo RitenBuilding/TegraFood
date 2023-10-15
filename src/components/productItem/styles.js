@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px 0 0px;
+`;
+
 export const ProductsContainer = styled.div`
   display: flex;
   border: 1px solid #0000004d;
   border-radius: 8px;
   height: 130px;
   width: 1000px;
-  margin: 10px 0px 0 0px;
   box-shadow: 3px 3px 8px 1px #0000004d;
 `;
 
@@ -78,4 +83,38 @@ export const ButtonText = styled.span`
   letter-spacing: 0.5px;
   text-align: center;
   color: #ffffff;
+`;
+
+export const SelectButton = styled.select`
+  width: 95px;
+  height: 50px;
+  border-radius: 5px;
+  justify-content: space-between;
+  background: #dc9000;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+
+  font-family: Poppins;
+  font-size: 16px;
+`;
+
+export const SelectOption = styled.option`
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+`;
+
+export const DeleteIconContainer = styled.div`
+  display: flex;
+  position: relative;
+  top: 40%;
+  left: 1.5%;
+  cursor: pointer;
 `;

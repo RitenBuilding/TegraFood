@@ -9,44 +9,6 @@ export const PageContainer = styled.div`
   overflow: hidden;
 `;
 
-export const MenuContainer = styled.div`
-  width: 254px;
-  background-color: #6a0000;
-  height: 100%;
-`;
-
-export const ListMenu = styled.div`
-  :hover {
-    background-color: #e5a11f;
-  }
-`;
-
-export const ListMenuButton = styled.div`
-  display: flex;
-  align-items: center;
-  width: 254px;
-  height: 45px;
-  border-top: 1px solid #ffffff;
-  border-bottom: 1px solid #ffffff;
-  cursor: pointer;
-  background-color: #6a0000;
-
-  &.active {
-    background-color: #e5a11f;
-  }
-`;
-
-export const ListMenuText = styled.p`
-  flex: 1;
-  font-family: Poppins;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 27px;
-  letter-spacing: 0.5px;
-  text-align: center;
-  color: #ffffff;
-`;
-
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -102,18 +64,6 @@ export const HorizontalMenuText = styled.p`
     color: #e5a11f;
     text-decoration: underline;
   }
-`;
-
-export const HorizontalIconContainer = styled.div`
-  display: flex;
-  align-items: flex-end;
-  margin-top: 50px;
-  margin-right: 40px;
-`;
-
-export const HorizontalMenuIcon = styled(Image)`
-  margin-left: 50px;
-  cursor: pointer;
 `;
 
 export const CenterContainer = styled.div`

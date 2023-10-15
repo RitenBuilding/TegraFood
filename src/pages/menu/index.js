@@ -7,10 +7,10 @@ import FilterIcon from "../../assets/images/filter_alt.png";
 import SortIcon from "../../assets/images/sort_by_alpha.png";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { productsMock } from "@/utils/productsMock";
-import ProductItem from "./components/productItem";
-import ModalPriceFilter from "./components/modalPriceFilter";
-import BlueModal from "@/components/blueModal";
+import ProductItem from "../../components/productItem";
+import { productsMock } from "../../utils/productsMock";
+import ModalPriceFilter from "../../components/modalPriceFilter";
+import BlueModal from "../../components/blueModal";
 
 export default function MenuPage() {
   const listMenu = ["Todos", "Pizza", "Sobremesa", "Pastel", "Açaí", "Bebidas"];
@@ -21,7 +21,10 @@ export default function MenuPage() {
   const [filterProducts, setFilterProducts] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [sortOrder, setSortOrder] = useState("asc");
-  const [openBlueModal, setOpenBlueModal] = useState(false);
+  const [openSortModal, setOpenSortModal] = useState(false);
+  const [openCartModal, setOpenCartModal] = useState(false);
+  const [myCart, setMyCart] = useState([]);
+  const [redirectToCheckout, setRedirectToCheckout] = useState(false);
 
   const handleMenuClick = (index, category) => {
     setActiveListMenuButton(index);
@@ -81,12 +84,27 @@ export default function MenuPage() {
     });
 
     setOpenModal(false);
-    setOpenBlueModal(true);
+    setOpenSortModal(true);
     setFilterProducts(sortedProducts);
   };
 
-  const handleCloseBlueModal = () => {
-    setOpenBlueModal(false);
+  const handleCloseSortModal = () => {
+    setOpenSortModal(false);
+  };
+
+  const handleBuyItem = (itemId) => {
+    const product = productsMock.find((item) => item.id === itemId);
+
+    const isProductInCart = myCart.some((item) => item.id === itemId);
+
+    if (!isProductInCart) {
+      setMyCart([...myCart, product]);
+      setOpenCartModal(true);
+    }
+  };
+
+  const handleRedirectToCheckout = () => {
+    setRedirectToCheckout(true);
   };
 
   return (
@@ -163,10 +181,22 @@ export default function MenuPage() {
         <styles.CenterContainer>
           {!filterProducts
             ? productsMock.map((product, index) => (
-                <ProductItem product={product} index={index} key={index} />
+                <ProductItem
+                  product={product}
+                  index={index}
+                  key={index}
+                  buttonType="buy"
+                  onClickBuy={() => handleBuyItem(product.id)}
+                />
               ))
             : filterProducts.map((product, index) => (
-                <ProductItem product={product} index={index} key={index} />
+                <ProductItem
+                  product={product}
+                  index={index}
+                  key={index}
+                  buttonType="buy"
+                  onClickBuy={() => handleBuyItem(product.id)}
+                />
               ))}
         </styles.CenterContainer>
       </styles.Container>
@@ -175,12 +205,19 @@ export default function MenuPage() {
         onPriceFilter={handlePriceFilter}
       />
       <BlueModal
-        openModal={!!openBlueModal}
+        openModal={!!openSortModal}
         leftText={`Ítens organizados de ${
           sortOrder !== "asc" ? "A à Z" : "Z à A"
         } `}
         rightText="Cancelar"
-        onClose={handleCloseBlueModal}
+        onClose={handleCloseSortModal}
+      />
+      <BlueModal
+        openModal={!!openCartModal}
+        leftText="Ítem adicionado ao carrinho"
+        rightText="ir para o carrinho"
+        goTo={handleRedirectToCheckout}
+        cart={myCart}
       />
     </styles.PageContainer>
   );
