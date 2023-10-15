@@ -78,6 +78,7 @@ export default function MenuPage() {
       }
     });
 
+    setOpenModal(false);
     setFilterProducts(sortedProducts);
   };
 
