@@ -1,93 +1,103 @@
-import Link from "next/link";
+import React, { useState } from "react";
+import Image from "next/image";
+import * as styles from "./styles";
+import logoImage from "../../assets/images/Logo.png";
+import Avatar from "../../assets/images/avatar.jpg";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import { productsMock } from "@/utils/productsMock";
+import ProductItem from "./components/productItem";
 
-export default function Page(params) {
+export default function MenuPage() {
+  const listMenu = ["Todos", "Pizza", "Sobremesa", "Pastel", "Açaí", "Bebidas"];
+  const topMenuList = ["Produtos", "Todos"];
+
+  const [activeListMenuButton, setActiveListMenuButton] = useState(null);
+  const [activeTopMenuButton, setActiveTopMenuButton] = useState(null);
+  const [filterProducts, setFilterProducts] = useState(null);
+
+  const handleMenuClick = (index, category) => {
+    setActiveListMenuButton(index);
+
+    const filter = productsMock.filter((product) =>
+      product.category?.includes(category.toLowerCase())
+    );
+    setFilterProducts(filter);
+  };
+
+  const handleTopClick = (index) => {
+    setActiveTopMenuButton(index);
+  };
+
   return (
-    <div class="container">
-      <div class="menu">
-        {/* <img class="menu-img" src="images/logo.svg" /> */}
-        <table class="menu-list">
-          <tr onclick="menuClick(0)">
-            <Link href="/menu/category/todos">Todos</Link>
-          </tr>
-          <tr onclick="menuClick(1)">
-            <td>Pizza</td>
-          </tr>
-          <tr onclick="menuClick(2)">
-            <td>Sobremesa</td>
-          </tr>
-          <tr onclick="menuClick(3)">
-            <td>Pastel</td>
-          </tr>
-          <tr onclick="menuClick(4)">
-            <td>Açaí</td>
-          </tr>
-          <tr onclick="menuClick(5)">
-            <td>Bebidas</td>
-          </tr>
-        </table>
-      </div>
+    <styles.PageContainer>
+      <styles.MenuContainer>
+        <Image
+          src={logoImage}
+          style={{
+            display: "flex",
+            margin: "35px",
+          }}
+          alt="Tegrafood logo"
+        />
+        <styles.ListMenu>
+          {listMenu.map((text, index) => (
+            <styles.ListMenuButton
+              key={index}
+              onClick={() => handleMenuClick(index, text)}
+              className={activeListMenuButton === index ? "active" : ""}
+            >
+              <styles.ListMenuText>{text}</styles.ListMenuText>
+            </styles.ListMenuButton>
+          ))}
+        </styles.ListMenu>
+      </styles.MenuContainer>
 
-      {/* <div class="navbar">
-        <ul>
-          <li>
-            <a onclick="showCart()" style="cursor: pointer">
-              <img class="navbar-icon" src="images/cart.svg" />
-            </a>
-          </li>
-          <li>
-            <img class="navbar-bell" src="images/bell.svg" />
-          </li>
-          <li>
-            <img class="navbar-avatar" src="images/avatar.svg" />
-          </li>
-        </ul>
-      </div> */}
+      <styles.Container>
+        <styles.Navbar>
+          <ShoppingCartIcon
+            style={{
+              color: "#ffffff",
+              width: "40px",
+              height: "60px",
+              margin: "10px",
+              cursor: "pointer",
+            }}
+          />
+          <NotificationsIcon
+            style={{
+              color: "#ffffff",
+              width: "40px",
+              height: "60px",
+              margin: "10px",
+              cursor: "pointer",
+            }}
+          />
+          <styles.Avatar src={Avatar} alt="Foto do usuário" />
+        </styles.Navbar>
 
-      {/* <div class="content">
-        <div class="links">
-          <div class="left-links">
-            <ul>
-              <li class="product-link" onclick="buttonClick()">
-                <button href="#">Produtos</button>
-                <button href="#" style="margin-left: 5px">
-                  Todos
-                </button>
-              </li>
-              <li></li>
-            </ul>
-          </div>
+        <styles.HorizontalListMenu>
+          {topMenuList.map((title, index) => (
+            <styles.HorizontalMenuText
+              key={index}
+              onClick={() => handleTopClick(index)}
+              className={activeTopMenuButton === index ? "active" : ""}
+            >
+              {title}
+            </styles.HorizontalMenuText>
+          ))}
+        </styles.HorizontalListMenu>
 
-          <div class="right-links">
-            <ul>
-              <li class="toplinks">
-                <a href="#" class="blue-link" id="price-filter">
-                  <img src="images/seta.svg" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="blue-link"
-                  style="margin-left: 5px"
-                  id="sortAZ"
-                >
-                  <img src="images/az.svg" />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="products"></div>
-        <div class="modal" id="myModal"></div>
-        <div class="price-filter"></div>
-      </div> */}
-
-      <div class="cart-content">
-        <div class="cart">
-          <p>Meu carrinho</p>
-        </div>
-      </div>
-    </div>
+        <styles.CenterContainer>
+          {!filterProducts
+            ? productsMock.map((product, index) => (
+                <ProductItem product={product} index={index} key={index} />
+              ))
+            : filterProducts.map((product, index) => (
+                <ProductItem product={product} index={index} key={index} />
+              ))}
+        </styles.CenterContainer>
+      </styles.Container>
+    </styles.PageContainer>
   );
 }
