@@ -8,8 +8,9 @@ import SortIcon from "../../assets/images/sort_by_alpha.png";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { productsMock } from "@/utils/productsMock";
-import ProductItem from "./components/productItem/productItem";
-import ModalPriceFilter from "./components/modalPriceFilter/modalPriceFilter";
+import ProductItem from "./components/productItem";
+import ModalPriceFilter from "./components/modalPriceFilter";
+import BlueModal from "@/components/blueModal";
 
 export default function MenuPage() {
   const listMenu = ["Todos", "Pizza", "Sobremesa", "Pastel", "Açaí", "Bebidas"];
@@ -20,6 +21,7 @@ export default function MenuPage() {
   const [filterProducts, setFilterProducts] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [sortOrder, setSortOrder] = useState("asc");
+  const [openBlueModal, setOpenBlueModal] = useState(false);
 
   const handleMenuClick = (index, category) => {
     setActiveListMenuButton(index);
@@ -79,7 +81,12 @@ export default function MenuPage() {
     });
 
     setOpenModal(false);
+    setOpenBlueModal(true);
     setFilterProducts(sortedProducts);
+  };
+
+  const handleCloseBlueModal = () => {
+    setOpenBlueModal(false);
   };
 
   return (
@@ -166,6 +173,14 @@ export default function MenuPage() {
       <ModalPriceFilter
         openModal={openModal}
         onPriceFilter={handlePriceFilter}
+      />
+      <BlueModal
+        openModal={!!openBlueModal}
+        leftText={`Ítens organizados de ${
+          sortOrder !== "asc" ? "A à Z" : "Z à A"
+        } `}
+        rightText="Cancelar"
+        onClose={handleCloseBlueModal}
       />
     </styles.PageContainer>
   );
