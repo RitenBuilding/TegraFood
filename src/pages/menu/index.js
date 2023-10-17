@@ -11,6 +11,8 @@ import ProductItem from "../../components/productItem";
 import { productsMock } from "../../utils/productsMock";
 import ModalPriceFilter from "../../components/modalPriceFilter";
 import BlueModal from "../../components/blueModal";
+import { useCart } from "@/contexts/CartContext";
+import { useRouter } from "next/router";
 
 export default function MenuPage() {
   const listMenu = ["Todos", "Pizza", "Sobremesa", "Pastel", "Açaí", "Bebidas"];
@@ -23,8 +25,10 @@ export default function MenuPage() {
   const [sortOrder, setSortOrder] = useState("asc");
   const [openSortModal, setOpenSortModal] = useState(false);
   const [openCartModal, setOpenCartModal] = useState(false);
-  const [myCart, setMyCart] = useState([]);
-  const [redirectToCheckout, setRedirectToCheckout] = useState(false);
+
+  const router = useRouter();
+  const { state, dispatch } = useCart();
+  const { cart } = state;
 
   const handleMenuClick = (index, category) => {
     setActiveListMenuButton(index);
@@ -94,17 +98,17 @@ export default function MenuPage() {
 
   const handleBuyItem = (itemId) => {
     const product = productsMock.find((item) => item.id === itemId);
-
-    const isProductInCart = myCart.some((item) => item.id === itemId);
+    const isProductInCart = cart.some((item) => item.id === itemId);
 
     if (!isProductInCart) {
-      setMyCart([...myCart, product]);
+      product.quantity = 1;
+      dispatch({ type: "ADD_TO_CART", payload: product });
       setOpenCartModal(true);
     }
   };
 
   const handleRedirectToCheckout = () => {
-    setRedirectToCheckout(true);
+    router.push("/menu/checkout");
   };
 
   return (
@@ -141,6 +145,7 @@ export default function MenuPage() {
               margin: "10px",
               cursor: "pointer",
             }}
+            onClick={handleRedirectToCheckout}
           />
           <NotificationsIcon
             style={{
@@ -216,8 +221,7 @@ export default function MenuPage() {
         openModal={!!openCartModal}
         leftText="Ítem adicionado ao carrinho"
         rightText="ir para o carrinho"
-        goTo={handleRedirectToCheckout}
-        cart={myCart}
+        onClick={handleRedirectToCheckout}
       />
     </styles.PageContainer>
   );

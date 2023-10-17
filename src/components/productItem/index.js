@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import * as styles from "./styles";
 import Image from "next/image";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useCart } from "@/contexts/CartContext";
 
 export default function ProductItem({
   product,
@@ -12,6 +13,8 @@ export default function ProductItem({
   onClickBuy,
 }) {
   const cartOptions = [1, 2, 3, 4, 5];
+  const { state, dispatch } = useCart();
+  const { cart } = state;
 
   const handleBuyItem = (id) => {
     onClickBuy(id);
@@ -19,6 +22,23 @@ export default function ProductItem({
 
   const handleDeleteItem = (id) => {
     onClickDelete(id);
+  };
+
+  const handleUpdateQuantity = (productId, newQuantity) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === productId) {
+        return {
+          ...item,
+          quantity: newQuantity,
+        };
+      }
+      return item;
+    });
+
+    dispatch({
+      type: "UPDATE_CART",
+      payload: updatedCart,
+    });
   };
 
   return (
@@ -50,7 +70,12 @@ export default function ProductItem({
                 <styles.ButtonText>Comprar</styles.ButtonText>
               </styles.BuyButton>
             ) : buttonType === "cart" ? (
-              <styles.SelectButton>
+              <styles.SelectButton
+                value={product.quantity}
+                onChange={(e) =>
+                  handleUpdateQuantity(product.id, parseInt(e.target.value))
+                }
+              >
                 {cartOptions.map((option) => (
                   <styles.SelectOption key={option} value={option}>
                     {`${option}x`}

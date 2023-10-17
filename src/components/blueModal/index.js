@@ -6,27 +6,24 @@ export default function BlueModal({
   rightText,
   openModal,
   onClose,
-  goTo,
+  onClick,
 }) {
-  const router = useRouter();
-
-  const handleGoToCheckout = () => {
-    if (typeof goTo === "function") {
-      goTo();
-      router.push("/menu/checkout");
-    }
-  };
-
   const handleClose = () => {
     if (typeof onClose === "function") {
       onClose();
     }
   };
 
+  const handleClick = () => {
+    if (typeof onClick === "function") {
+      onClick();
+    }
+  };
+
   return openModal ? (
     <styles.Container>
       <styles.ModalLeftText>{leftText}</styles.ModalLeftText>
-      <styles.ModalRightText onClose={handleClose} onClick={handleGoToCheckout}>
+      <styles.ModalRightText onClose={handleClose} onClick={handleClick}>
         {rightText}
       </styles.ModalRightText>
     </styles.Container>

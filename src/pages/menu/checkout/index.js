@@ -3,10 +3,15 @@ import ProductItem from "../../../components/productItem";
 import Avatar from "src/assets/images/avatar.jpg";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { productsMock } from "../../../utils/productsMock";
+import { useCart } from "@/contexts/CartContext";
 
 export default function Checkout() {
-  const handleDeleteItem = (itemId) => {};
+  const { state, dispatch } = useCart();
+  const { cart } = state;
+
+  const handleDeleteItem = (itemId) => {
+    dispatch({ type: "REMOVE_FROM_CART", payload: itemId });
+  };
 
   return (
     <styles.PageContainer>
@@ -38,7 +43,7 @@ export default function Checkout() {
         </styles.HorizontalContainer>
 
         <styles.CenterContainer>
-          {productsMock.map((product, index) => (
+          {cart.map((product, index) => (
             <ProductItem
               product={product}
               index={index}
