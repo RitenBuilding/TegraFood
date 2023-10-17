@@ -4,13 +4,40 @@ import Avatar from "src/assets/images/avatar.jpg";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useCart } from "@/contexts/CartContext";
+import { formatMoney } from "@/utils/formatMoney";
+import { useState } from "react";
 
 export default function Checkout() {
   const { state, dispatch } = useCart();
   const { cart } = state;
 
+  const [discount, setDiscount] = useState(0);
+  const [discountApplied, setDiscountApplied] = useState(false);
+
   const handleDeleteItem = (itemId) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: itemId });
+  };
+
+  const handleTotalCart = () => {
+    let total = 0;
+
+    for (const item of cart) {
+      total += item.price * item.quantity;
+    }
+
+    if (discountApplied) {
+      total -= discount;
+    }
+
+    if (total < 0) {
+      return formatMoney(0);
+    }
+
+    return formatMoney(total);
+  };
+
+  const applyDiscount = () => {
+    setDiscountApplied(true);
   };
 
   return (
@@ -53,6 +80,56 @@ export default function Checkout() {
               onClickDelete={handleDeleteItem}
             />
           ))}
+
+          <styles.TotalCheckoutContainer>
+            <styles.DiscountCoupomContainer>
+              <styles.DiscountText>Cupom de desconto</styles.DiscountText>
+              <styles.DiscountInputContainer>
+                <styles.DiscountTypeValue>R$</styles.DiscountTypeValue>
+                <styles.DiscountInput
+                  type="number"
+                  value={discount === 0 ? "" : discount}
+                  onChange={(e) => setDiscount(parseFloat(e.target.value))}
+                />
+                <styles.DiscountButton>
+                  <styles.ButtonText onClick={applyDiscount}>
+                    Adicionar
+                  </styles.ButtonText>
+                </styles.DiscountButton>
+              </styles.DiscountInputContainer>
+            </styles.DiscountCoupomContainer>
+
+            <styles.TotalContainer>
+              <styles.TotalRow>
+                <styles.TotalLeft>
+                  <styles.TotalTitle>SUBTOTAL</styles.TotalTitle>
+                </styles.TotalLeft>
+                <styles.TotalRight>
+                  <styles.PriceText>
+                    {formatMoney(handleTotalCart())}
+                  </styles.PriceText>
+                </styles.TotalRight>
+              </styles.TotalRow>
+              <styles.TotalRow>
+                <styles.TotalLeft>
+                  <styles.TotalTitle>ENTREGA</styles.TotalTitle>
+                </styles.TotalLeft>
+                <styles.TotalRight>
+                  <styles.DeliveryText>Calcular</styles.DeliveryText>
+                </styles.TotalRight>
+              </styles.TotalRow>
+              <styles.TotalRow>
+                <styles.TotalLeft>
+                  <styles.TotalTitle>TOTAL</styles.TotalTitle>
+                </styles.TotalLeft>
+                <styles.TotalRight>
+                  <styles.PriceText>
+                    {formatMoney(handleTotalCart())}
+                  </styles.PriceText>
+                </styles.TotalRight>
+              </styles.TotalRow>
+            </styles.TotalContainer>
+          </styles.TotalCheckoutContainer>
         </styles.CenterContainer>
       </styles.Container>
     </styles.PageContainer>
