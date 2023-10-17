@@ -18,7 +18,7 @@ export default function MenuPage() {
   const listMenu = ["Todos", "Pizza", "Sobremesa", "Pastel", "Açaí", "Bebidas"];
   const topMenuList = ["Produtos", "Todos"];
 
-  const [activeListMenuButton, setActiveListMenuButton] = useState(null);
+  const [activeListMenuButton, setActiveListMenuButton] = useState(0);
   const [activeTopMenuButton, setActiveTopMenuButton] = useState(null);
   const [filterProducts, setFilterProducts] = useState(null);
   const [openModal, setOpenModal] = useState(false);
@@ -53,17 +53,27 @@ export default function MenuPage() {
   };
 
   const handlePriceFilter = (priceRange) => {
-    const products = filterProducts ? filterProducts : productsMock;
+    const selectedCategory = listMenu[activeListMenuButton].toLowerCase();
 
-    const filteredProducts = products.filter((product) => {
+    const filteredProducts = productsMock.filter((product) => {
       if (priceRange === "5-25") {
-        return product.price >= 5 && product.price <= 25;
+        return (
+          product.price >= 5 &&
+          product.price <= 25 &&
+          product.category.includes(selectedCategory)
+        );
       }
       if (priceRange === "26-45") {
-        return product.price >= 26 && product.price <= 45;
+        return (
+          product.price >= 26 &&
+          product.price <= 45 &&
+          product.category.includes(selectedCategory)
+        );
       }
       if (priceRange === "46") {
-        return product.price >= 46;
+        return (
+          product.price >= 46 && product.category.includes(selectedCategory)
+        );
       }
     });
 
