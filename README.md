@@ -1,5 +1,3 @@
-Claro, aqui está a documentação aprimorada, incluindo a URL de produção do projeto:
-
 # Documentação do Projeto TegraFood
 
 Bem-vindo à documentação do Projeto TegraFood, um desafio proposto pela Tegra. Este projeto é um aplicativo web desenvolvido exclusivamente no frontend, utilizando Next.js e Styled Components. Ele oferece funcionalidades de login, cadastro de usuários, visualização de um menu de produtos e um processo de checkout. A seguir, você encontrará informações detalhadas sobre o projeto.
