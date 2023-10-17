@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import * as styles from "./styles";
 import ProductItem from "../../../components/productItem";
 import Avatar from "src/assets/images/avatar.jpg";
@@ -5,7 +6,6 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useCart } from "@/contexts/CartContext";
 import { formatMoney } from "@/utils/formatMoney";
-import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";

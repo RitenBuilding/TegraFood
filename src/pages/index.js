@@ -1,10 +1,10 @@
+import React, { useState } from "react";
 import Image from "next/image.js";
 import * as styles from "./styles.js";
 import foodImage from "../assets/images/food.jpg";
 import messageImage from "../assets/images/Message.jpg";
 import passwordImage from "../assets/images/Password.jpg";
 import googleImage from "../assets/images/Google.jpg";
-import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router.js";
