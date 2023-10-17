@@ -71,7 +71,7 @@ Para executar o Projeto TegraFood em seu ambiente de desenvolvimento, siga os pa
 
 ## URL de Produção
 
-O Projeto TegraFood está hospedado em produção e pode ser acessado em [https://tegra-food-plum.vercel.app/](https://tegra-food-plum.vercel.app/){:target="_blank"}.
+O Projeto TegraFood está hospedado em produção e pode ser acessado em [https://tegra-food-plum.vercel.app/](https://tegra-food-plum.vercel.app/).
 
 ## Conclusão
 
