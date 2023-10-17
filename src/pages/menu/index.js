@@ -104,6 +104,10 @@ export default function MenuPage() {
       product.quantity = 1;
       dispatch({ type: "ADD_TO_CART", payload: product });
       setOpenCartModal(true);
+
+      setTimeout(() => {
+        setOpenCartModal(false);
+      }, 3000);
     }
   };
 
