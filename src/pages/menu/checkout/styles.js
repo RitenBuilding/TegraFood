@@ -233,7 +233,7 @@ export const DeliveryText = styled.span`
   justify-content: right;
   align-items: center;
   text-align: right;
-  height: 45px;
+  height: 50px;
   margin-right: 15px;
   cursor: pointer;
 `;

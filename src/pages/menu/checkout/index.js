@@ -6,6 +6,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useCart } from "@/contexts/CartContext";
 import { formatMoney } from "@/utils/formatMoney";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Checkout() {
   const { state, dispatch } = useCart();
@@ -38,6 +40,24 @@ export default function Checkout() {
 
   const applyDiscount = () => {
     setDiscountApplied(true);
+  };
+
+  const handleCalculateDelivery = () => {
+    toast.info("Calculo de entrega não implementado", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      style: {
+        textAlign: "start",
+        fontFamily: "Poppins",
+        fontSize: "13px",
+      },
+    });
   };
 
   return (
@@ -115,7 +135,9 @@ export default function Checkout() {
                   <styles.TotalTitle>ENTREGA</styles.TotalTitle>
                 </styles.TotalLeft>
                 <styles.TotalRight>
-                  <styles.DeliveryText>Calcular</styles.DeliveryText>
+                  <styles.DeliveryText onClick={handleCalculateDelivery}>
+                    Calcular
+                  </styles.DeliveryText>
                 </styles.TotalRight>
               </styles.TotalRow>
               <styles.TotalRow>
@@ -132,6 +154,7 @@ export default function Checkout() {
           </styles.TotalCheckoutContainer>
         </styles.CenterContainer>
       </styles.Container>
+      <ToastContainer />
     </styles.PageContainer>
   );
 }
