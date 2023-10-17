@@ -6,7 +6,7 @@ export const PageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
 `;
 
 export const Container = styled.div`
@@ -80,7 +80,6 @@ export const CenterContainer = styled.div`
 export const TotalCheckoutContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 130px;
   width: 1000px;
   margin-top: 10px;
   margin-right: 26px;
@@ -235,5 +234,42 @@ export const DeliveryText = styled.span`
   text-align: right;
   height: 50px;
   margin-right: 15px;
+  cursor: pointer;
+`;
+
+export const CheckoutContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  width: 1000px;
+  margin-top: 50px;
+`;
+
+export const ChooseMore = styled.span`
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-decoration: underline;
+  color: #223263;
+  margin-right: 25px;
+  cursor: pointer;
+`;
+
+export const CheckoutButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  justify-content: space-between;
+  background: #dc9000;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border: none;
   cursor: pointer;
 `;

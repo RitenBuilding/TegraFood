@@ -8,10 +8,12 @@ import { formatMoney } from "@/utils/formatMoney";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 export default function Checkout() {
   const { state, dispatch } = useCart();
   const { cart } = state;
+  const router = useRouter();
 
   const [discount, setDiscount] = useState(0);
   const [discountApplied, setDiscountApplied] = useState(false);
@@ -58,6 +60,46 @@ export default function Checkout() {
         fontSize: "13px",
       },
     });
+  };
+
+  const handleCheckout = () => {
+    if (!cart.length) {
+      return toast.info("Carrinho está vazio", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        style: {
+          textAlign: "start",
+          fontFamily: "Poppins",
+          fontSize: "13px",
+        },
+      });
+    }
+
+    toast.info("Fechar pedido não implementado", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      style: {
+        textAlign: "start",
+        fontFamily: "Poppins",
+        fontSize: "13px",
+      },
+    });
+  };
+
+  const handleRedirectToMenu = () => {
+    router.push("/menu");
   };
 
   return (
@@ -152,6 +194,24 @@ export default function Checkout() {
               </styles.TotalRow>
             </styles.TotalContainer>
           </styles.TotalCheckoutContainer>
+
+          <styles.CheckoutContainer>
+            <styles.ChooseMore onClick={handleRedirectToMenu}>
+              Escolher mais
+            </styles.ChooseMore>
+            <styles.CheckoutButton onClick={handleCheckout}>
+              <styles.ButtonText style={{ marginLeft: 2 }}>
+                Fechar pedido
+              </styles.ButtonText>
+              <ShoppingCartIcon
+                style={{
+                  color: "#ffffff",
+                  width: "20px",
+                  height: "40px",
+                }}
+              />
+            </styles.CheckoutButton>
+          </styles.CheckoutContainer>
         </styles.CenterContainer>
       </styles.Container>
       <ToastContainer />
