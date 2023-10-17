@@ -3,10 +3,7 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  resolutions: {
-    "styled-components": "^5",
-  },
-  pageExtensions: ["mdx", "md", "page.js"],
+  pageExtensions: ["mdx", "md", "js"],
 };
 
 module.exports = nextConfig;

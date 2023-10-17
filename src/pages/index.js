@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image.js";
-import * as styles from "./styles.js";
+import * as styles from "../styles/styles";
 import foodImage from "../assets/images/food.jpg";
 import messageImage from "../assets/images/Message.jpg";
 import passwordImage from "../assets/images/Password.jpg";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as styles from "./styles";
+import * as styles from "../../../styles/menu/checkout/styles";
 import ProductItem from "../../../components/productItem";
 import Avatar from "src/assets/images/avatar.jpg";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";

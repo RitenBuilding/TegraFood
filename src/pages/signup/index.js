@@ -1,5 +1,5 @@
 import Image from "next/image.js";
-import * as styles from "./styles.js";
+import * as styles from "../../styles/signup/styles";
 import foodImage from "../../assets/images/food.jpg";
 import arrowBackImage from "../../assets/images/arrow_back.jpg";
 import userImage from "../../assets/images/User.jpg";

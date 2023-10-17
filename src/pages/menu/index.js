@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import * as styles from "./styles";
+import * as styles from "../../styles/menu/styles";
 import logoImage from "../../assets/images/Logo.png";
 import Avatar from "../../assets/images/avatar.jpg";
 import FilterIcon from "../../assets/images/filter_alt.png";
