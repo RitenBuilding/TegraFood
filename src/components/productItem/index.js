@@ -41,6 +41,9 @@ export default function ProductItem({
     });
   };
 
+  const isProductInCart = cart.find((item) => item.id === product.id);
+  const isDisabled = isProductInCart && isProductInCart.comprado;
+
   return (
     <styles.Container>
       <styles.ProductsContainer key={index}>
@@ -66,7 +69,10 @@ export default function ProductItem({
             <styles.PriceText>R${product.price},00</styles.PriceText>
 
             {buttonType === "buy" ? (
-              <styles.BuyButton onClick={() => handleBuyItem(product.id)}>
+              <styles.BuyButton
+                onClick={() => handleBuyItem(product.id)}
+                disabled={isDisabled}
+              >
                 <styles.ButtonText>Comprar</styles.ButtonText>
               </styles.BuyButton>
             ) : buttonType === "cart" ? (

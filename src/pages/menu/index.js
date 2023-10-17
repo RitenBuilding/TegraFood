@@ -112,12 +112,19 @@ export default function MenuPage() {
 
     if (!isProductInCart) {
       product.quantity = 1;
-      dispatch({ type: "ADD_TO_CART", payload: product });
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: { ...product, comprado: true },
+      });
       setOpenCartModal(true);
 
       setTimeout(() => {
         setOpenCartModal(false);
       }, 3000);
+
+      setTimeout(() => {
+        localStorage.removeItem("cart");
+      }, 900000);
     }
   };
 

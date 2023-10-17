@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 
 const cartReducer = (state, action) => {
   switch (action.type) {
@@ -20,6 +20,17 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, { cart: [] });
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      dispatch({ type: "UPDATE_CART", payload: JSON.parse(savedCart) });
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(state.cart));
+  }, [state.cart]);
 
   return (
     <CartContext.Provider value={{ state, dispatch }}>

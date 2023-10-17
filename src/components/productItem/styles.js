@@ -73,6 +73,12 @@ export const BuyButton = styled.button`
   box-shadow: 0px 4px 4px 0px #00000040;
   border: none;
   cursor: pointer;
+
+  &:disabled {
+    background: #ccc;
+    color: #999;
+    cursor: not-allowed;
+  }
 `;
 
 export const ButtonText = styled.span`
