@@ -215,7 +215,7 @@ export default function MenuPage() {
           sortOrder !== "asc" ? "A à Z" : "Z à A"
         } `}
         rightText="Cancelar"
-        onClose={handleCloseSortModal}
+        onClick={handleCloseSortModal}
       />
       <BlueModal
         openModal={!!openCartModal}
